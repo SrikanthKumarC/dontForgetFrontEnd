@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer className="absolute bottom-0 w-full p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+      <footer className="mt-auto p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           Made by {" "}
           <a href="https://srikanth.ch/" className="hover:underline">

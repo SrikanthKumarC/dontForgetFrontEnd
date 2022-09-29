@@ -17,7 +17,7 @@ const Create = ({ fetchData, googleEmail, dbURL }) => {
   };
 
   return (
-    <div>
+    <div className="mb-4">
       <form className="bg-slate-600 p-4 rounded-md">
         <div className="mb-6">
           <label

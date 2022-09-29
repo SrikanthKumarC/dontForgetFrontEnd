@@ -6,21 +6,25 @@ import Create from "../components/Create";
 import axios from "axios";
 import Logout from "../components/Logout";
 import Footer from "../components/Footer";
+import PropagateLoader from 'react-spinners/PropagateLoader'
 
 const login = () => {
   const { data: session, status } = useSession();
   const [isCreate, setIsCreate] = useState(false);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const URL = "https://dontforgetrender.onrender.com/subscribers"
   console.log(data);
 
   console.log(session);
   const fetchData = async () => {
     if (status === "authenticated") {
+      setLoading(true);
       await axios
         .get(`${URL}/${session.user.email}`)
         .then((res) => {
           setData(res.data);
+          setLoading(false);
         })
         .catch((err) => console.log(err));
     }
@@ -32,7 +36,7 @@ const login = () => {
 
   if (session) {
     return (
-      <div>
+      <div className="flex flex-col h-screen">
         <p className="text-center italic font-serif p-3">
           Note: You can only delete future events, past events are automatically
           deleted by the server.
@@ -53,6 +57,7 @@ const login = () => {
           )}
         </section>
         {/* Only view list if data is present */}
+        <div className="grid place-items-center"><PropagateLoader loading={loading} color="#36d7b7"/></div>
         {data.length>0 && <ListView data={data} update={fetchData} dbURL={URL}/>}
         <Footer />
       </div>
